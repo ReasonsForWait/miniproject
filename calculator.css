@@ -1,0 +1,69 @@
+button{
+  display: block;
+  box-shadow: 1px 1px 3px black;
+}
+.container{
+  padding-left: 30px;
+  display: grid;
+  position: relative;
+  gap: 5px;
+  grid-template-columns: repeat(4, 50px);
+  grid-auto-rows: 50px;
+}
+#num{
+  display: block;
+  margin: 30px 0px 5px 30px;
+  width: 210px;
+  height: 30px;
+  text-align: right;
+}
+#plus{
+  grid-area: 2/4/4/5;
+}
+#result{
+  grid-area: 4/4/6/5;
+}
+.container button:nth-of-type(16){
+/* .val:nth-of-type(10){ */
+  grid-area: 5/1/6/3;}
+/* } */
+#str p{
+  color: white;
+  text-align: right;
+}
+#str .str1:nth-child(1){
+  display: block;
+  position: absolute;
+  width: 210px;
+  height: 30px;
+  left: 260px;
+  top: 30px;
+  background-color: #aaa;
+}
+#str .str1:nth-child(2){
+  display: block;
+  position: absolute;
+  width: 210px;
+  height: 30px;
+  left: 260px;
+  top: 60px;
+  background-color: #ccc;
+}
+#str .str1:nth-child(3){
+  display: block;
+  position: absolute;
+  width: 210px;
+  height: 30px;
+  left: 260px;
+  top: 90px;
+  background-color: #aaa;
+}
+#str .str1:nth-child(4){
+  display: block;
+  position: absolute;
+  width: 210px;
+  height: 30px;
+  left: 260px;
+  top: 120px;
+  background-color: #ccc;
+}

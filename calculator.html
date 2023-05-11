@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="../../default-grid.css">
+  <link rel="stylesheet" href="./calculator.css">
+</head>
+<body>
+  <div class="main">
+    <input type="text" id="num" value="">
+    <div class="container">
+      <button id="clear">C</button>
+      <button id="divide">÷</button>
+      <button id="multi">*</button>
+      <button id="minus">-</button>
+      <button class="val">7</button>
+      <button class="val">8</button>
+      <button class="val">9</button>
+      <button id="plus">+</button>
+      <button class="val">4</button>
+      <button class="val">5</button>
+      <button class="val">6</button>
+      <button class="val">1</button>
+      <button class="val">2</button>
+      <button class="val">3</button>
+      <button id="result">=</button>
+      <button class="val">0</button>
+      <button id="dot">.</button>
+    </div>
+    <div id="str">
+      <p class="str1"></p>
+      <p class="str1"></p>
+      <p class="str1"></p>
+      <p class="str1"></p>
+    </div>
+  </div>
+  <script>
+    let val = "";
+    let math = "";
+    let v1 = "";
+    let v2 = "";
+    let sim = "";
+
+    // p 탐색 함수
+    function pSuch (a){
+      if(document.querySelector(".str1")[a].textContent == ""){
+        let k = a+1;
+      }
+      return k;
+    }
+
+    // 7, 8, 9
+    for (let i = 0; i < 3; i++) {
+      document.getElementsByClassName("val")[i].addEventListener("click", function(){
+        val += `${i+7}`;
+        document.getElementById("num").value = val;
+      })
+    }
+
+    // 4, 5, 6
+    for (let i = 6; i < 9; i++) {
+      document.getElementsByClassName("val")[i].addEventListener("click", function(){
+        val += `${i-5}`;
+        document.getElementById("num").value = val;
+      })
+    }
+
+    // 1, 2, 3
+    for (let i = 3; i < 6; i++) {
+      document.getElementsByClassName("val")[i].addEventListener("click", function(){
+        val += `${i+1}`;
+        document.getElementById("num").value = val;
+      })
+    }
+
+    // 0
+    document.getElementsByClassName("val")[9].addEventListener("click", function(){
+      val += `0`;
+      document.getElementById("num").value = val;
+    })
+
+    // .
+    document.getElementById("dot").addEventListener("click", function(){
+      val += `.`;
+      document.getElementById("num").value = val;
+    })
+
+    // =
+    document.getElementById("clear").addEventListener("click", function(){
+      document.getElementById("num").value = "";
+      val = "";
+      math = "";
+      for (let i = 1; i < 5; i++) {
+        document.getElementsByClassName(`str${i}`)[0].textContent = "";
+      }
+    })
+
+    // +
+    document.getElementById("plus").addEventListener("click", function(){
+      sim = "+";
+      v1 = document.getElementById("num").value;
+      val += ` + `
+      document.getElementsByClassName("str1")[0].textContent = val;
+      val = "";
+    })
+
+    // =
+    document.getElementById("result").addEventListener("click", function(){
+      v2 = document.getElementById("num").value;
+      v1 = +v1;
+      v2 = +v2;
+      document.getElementsByClassName("str1")[pSuch(a)].textContent = `${v1} + ${v2} = ${v1 + v2}`;
+      document.getElementById("num").value = "";
+    })
+    </script>
+</body>
+</html>
