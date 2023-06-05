@@ -1,0 +1,19 @@
+#food{
+  display: block;
+  border: 1px solid #000;
+  border-radius: 10px;
+  width: 600px;
+  height: 80px;
+}
+
+#food li{
+  display: inline-block;
+}
+
+#dessert #drink #meal{
+  display: block;
+  border: 1px solid #000;
+  border-radius: 10px;
+  width: 600px;
+  height: 80px;
+}
