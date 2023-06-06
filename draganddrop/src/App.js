@@ -29,36 +29,35 @@ function App() {
   function onDropDrink(e){
     e.preventDefault();
     const types = e.dataTransfer.getData("food");
-    const id = e.dataTransfer.getData("text");
+    const id = e.dataTransfer.getData("id");
     console.log(e.target.result);
     if (types !== "drink") {
       alert(`${types} is not drink`);
       return;
     }
-    setImg();
+    setImg(id);
   }
-
+  
   function onDropDessert(e){
     e.preventDefault();
     const types = e.dataTransfer.getData("food");
-    console.log(types)
+    const id = e.dataTransfer.getData("id");
     if (types !== "dessert") {
       alert(`${types} is not dessert`);
       return;
     }
-    setImg();
+    setImg(id);
   }
-
+  
   function onDropMeal(e){
     e.preventDefault();
     const types = e.dataTransfer.getData("food");
-    console.log(types)
-    console.log(e.target.result);
+    const id = e.dataTransfer.getData("id");
     if (types !== "meal") {
       alert(`${types} is not meal`);
       return;
     }
-    setImg();
+    setImg(id);
   }
 
   function onDragOver(e){
@@ -69,15 +68,15 @@ function App() {
     <div>
       <h3>준비된 음식 종류</h3>
       <ul id='food' onDragStart={onDragStart}>
-        <li><img id="f1" src={banana} alt="" data-food="dessert"></img></li>
-        <li><img id="f2" src={beer} alt="" data-food="drink"></img></li>
-        <li><img id="f3" src={bread} alt="" data-food="meal"></img></li>
-        <li><img id="f4" src={cherry} alt="" data-food="dessert"></img></li>
-        <li><img id="f5" src={coffee} alt="" data-food="drink"></img></li>
-        <li><img id="f6" src={juice} alt="" data-food="drink"></img></li>
-        <li><img id="f7" src={noodle} alt="" data-food="meal"></img></li>
-        <li><img id="f8" src={orange} alt="" data-food="dessert"></img></li>
-        <li><img id="f9" src={rice} alt="" data-food="meal"></img></li>
+        <li><img id="f1" src={banana} alt="바나나" data-food="dessert"></img></li>
+        <li><img id="f2" src={beer} alt="맥주" data-food="drink"></img></li>
+        <li><img id="f3" src={bread} alt="빵" data-food="meal"></img></li>
+        <li><img id="f4" src={cherry} alt="체리" data-food="dessert"></img></li>
+        <li><img id="f5" src={coffee} alt="커피" data-food="drink"></img></li>
+        <li><img id="f6" src={juice} alt="쥬스" data-food="drink"></img></li>
+        <li><img id="f7" src={noodle} alt="면" data-food="meal"></img></li>
+        <li><img id="f8" src={orange} alt="오렌지" data-food="dessert"></img></li>
+        <li><img id="f9" src={rice} alt="쌀밥" data-food="meal"></img></li>
       </ul>
 
       <h3>디저트</h3>
