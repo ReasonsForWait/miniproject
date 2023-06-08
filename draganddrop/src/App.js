@@ -1,5 +1,8 @@
 // import logo from './logo.svg';
 import './App.css';
+import Dessert from './Component/Dessert';
+import Drink from './Component/Drink';
+import Meal from './Component/Meal';
 
 import banana from './images/banana.png'
 import beer from './images/beer.png'
@@ -15,59 +18,86 @@ import {useState} from "react";
 
 function App() {
 
-  const [img, setImg] = useState("");
+  const [img, setImg] = useState({
+    id : '',
+    food : ''
+  });
 
   function onDragStart(e){
-    setImg(
-      e.dataTransfer.setData("text", e.target.id),
-      e.dataTransfer.setData("food", e.target.dataset.food)
-    )
-    console.log(e.target.id);
-    console.log(e.target.dataset.food);
+    setImg({...img,
+      id : e.target.id,
+      food : e.target.dataset.food
+    })
+    console.log(img);
   }
 
   function onDropDrink(e){
     e.preventDefault();
-    const types = e.dataTransfer.getData("food");
-    const id = e.dataTransfer.getData("id");
-    console.log(e.target.result);
+    const types = img.food;
+    const id = img.id;
     if (types !== "drink") {
       alert(`${types} is not drink`);
       return;
     }
-    setImg(id);
+    setImg({...img, id : id});
   }
   
   function onDropDessert(e){
     e.preventDefault();
-    const types = e.dataTransfer.getData("food");
-    const id = e.dataTransfer.getData("id");
+    const types = img.food;
+    const id = img.id;
     if (types !== "dessert") {
       alert(`${types} is not dessert`);
       return;
     }
-    setImg(id);
+    setImg({...img, id : id});
   }
   
   function onDropMeal(e){
     e.preventDefault();
-    const types = e.dataTransfer.getData("food");
-    const id = e.dataTransfer.getData("id");
+    const types = img.food;
+    const id = img.id;
     if (types !== "meal") {
       alert(`${types} is not meal`);
       return;
     }
-    setImg(id);
+    setImg({...img, id : id});
   }
 
   function onDragOver(e){
     e.preventDefault();
   }
 
+  function printAnyway(){
+    console.log("찍히나?");
+  }
+
+  const imgSrc = [banana, beer, bread, cherry, coffee, juice, noodle, orange, rice];
+  const foodDataset = { banana : "dessert", beer : "drink", bread : "meal", cherry : "dessert",
+                       coffee : "drink", juice : "drink", noodle : "meal", orange : "dessert", rice : "meal"}
+
+  function renderFood(){
+    let tags = [];
+    
+    for (let i = 0; i < imgSrc.length; i++) {
+      tags.push(
+        <li key={`f${i+1}`}>
+          <img id={`f${i+1}`} src={imgSrc[i]} alt="음식" data-food={foodDataset[imgSrc[i]]}/>
+        </li>
+      );
+     }
+     
+     return (
+       // ul 태그
+       <ul id='food' onDragStart={onDragStart}>{tags}</ul>
+     );
+  }
+
   return (
     <div>
-      <h3>준비된 음식 종류</h3>
-      <ul id='food' onDragStart={onDragStart}>
+      <h2>준비된 음식 종류</h2>
+      {renderFood()}
+      {/* <ul id='food' onDragStart={onDragStart}>
         <li><img id="f1" src={banana} alt="바나나" data-food="dessert"></img></li>
         <li><img id="f2" src={beer} alt="맥주" data-food="drink"></img></li>
         <li><img id="f3" src={bread} alt="빵" data-food="meal"></img></li>
@@ -77,14 +107,11 @@ function App() {
         <li><img id="f7" src={noodle} alt="면" data-food="meal"></img></li>
         <li><img id="f8" src={orange} alt="오렌지" data-food="dessert"></img></li>
         <li><img id="f9" src={rice} alt="쌀밥" data-food="meal"></img></li>
-      </ul>
+      </ul> */}
 
-      <h3>디저트</h3>
-      <ul id='dessert' onDragOver={onDragOver} onDrop={onDropDessert}></ul>
-      <h3>드링크</h3>
-      <ul id='drink' onDragOver={onDragOver} onDrop={onDropDrink}></ul>
-      <h3>식사</h3>
-      <ul id='meal' onDragOver={onDragOver} onDrop={onDropMeal}></ul>
+      <Dessert onDragOver={onDragOver} onDrop={printAnyway}></Dessert>
+      <Drink></Drink>
+      <Meal></Meal>
     </div>
   );
 }
